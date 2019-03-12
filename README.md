@@ -55,6 +55,9 @@ public class RiverEscrow : Escrow, IPublicTranscribeable
 
 ```
 
+
+Since this Escrow subclasses IPublicTranscribable, it can be used via the following:
+
 ```
 var reviewEscrow = ShowAllRecords(RiverEscrow, Format.FormattedView); //Format.TemporalView, Format.ReverseTemporalView, Format.SummaryView
 
