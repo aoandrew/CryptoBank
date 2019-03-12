@@ -15,3 +15,47 @@ It will be API-first making it very easy for online companies to use the service
 - Records would be kept on public widely distributed decentralized blockchains with low concentration ideally.
 - Protocols / blockchains would be interchangable so newer technology could be incorporated by the bank, but also so that future users of the code of the bank could simply swap out protocols / blockchains without having to fork and make significant changes to the code.  (ie. pre-baking flexibility to maintain cohesion of developer community to create strength to crypto bank code base, allow crypto bank operator flexibility, and in-the end allow users choice.  The added benefit of course would be the interoperability of the crypto banking network - escrow, loans, paybacks, verications, payments - so much of the value depends on the network effects (interoperability) of the financial network. 
 
+Entities would be treated and controlled in a similar fashion to objects:
+
+
+Escrow:
+```
+public class RiverEscrow : Escrow, IPublicTranscribeable
+{
+  //OWNERSHIP
+  public EscrowCreator ECreator {get; set;}  //CREATOR OF ESCROW 
+  public List<EntityController> EControllers {get;set;}  //THOSE THAT CAN SEND MONEY
+  public List<EntityObserverers> EObserverers {get;set;} //DECLARE THOSE THAT CAN OBSERVE EVENTS AND PROPERTIES
+  public List<EntityReceivers> EReceivers {get;set;}  //REGISTER RECEIVERS
+  
+  //FUNDS
+  public double TotalFunds {get;set;}
+  
+  //TRANSACTIONS + PROPERTY CHANGES
+  public List<Transactions> ETransactions {get;set;} //KEEP TRACK OF TRANSACTIONS - RUNNING IMMUTABLE RECORD (BLOCKCHAIN)
+  public List<PropertyChanges> EPropertyChanges {get;set;} //KEEP TRACK OF CHANGES TO PROPERTIES - RUNNING IMMUTABLE RECORD
+  public ApprovableList<Transactions> EIncomingPayments {get;set;} //INCOMING TRANSACTIONS - AFTER ACCEPTANCE, IT WILL BE REMOVED - RUNNING IMMUTABLE RECORD (BLOCKCHAIN)
+
+  public RiverEscrow()
+  {}
+  
+  private SendTo(Entity sentToEntity, AmountToSend amountToSend)
+  {
+    //MAKE SURE THAT sentToEntity IS PART OF THE RECEIVER LIST
+    //CHECK IF SUFFICIENT FUNDS, THEN SUBTRACT SEND AMOUNT 
+  };
+  
+  private AcceptTransaction(string incomingTransactionsId, ApprovableList<Transactions> approvableList)
+  {
+    //ACCEPT INCOMING FUNDS VIA TRANSACTION ID FROM THE EIncomingPayments list
+    //ITEMS SHOULD BE REMOVED FROM APPROVABLELIST
+  };  
+}
+
+
+```
+
+```
+var reviewEscrow = ShowAllRecords(RiverEscrow, Format.FormattedView); //Format.TemporalView, Format.ReverseTemporalView, Format.SummaryView
+
+```
