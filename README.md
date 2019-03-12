@@ -23,9 +23,10 @@ Escrow:
 public class RiverEscrow : Escrow, IPublicTranscribeable
 {
   //OWNERSHIP
+  public List<EntityObserverers> EObserverers {get;set;} //DECLARE THOSE THAT CAN OBSERVE EVENTS AND PROPERTIES
+
   public EscrowCreator ECreator {get; set;}  //CREATOR OF ESCROW 
   public List<EntityController> EControllers {get;set;}  //THOSE THAT CAN SEND MONEY
-  public List<EntityObserverers> EObserverers {get;set;} //DECLARE THOSE THAT CAN OBSERVE EVENTS AND PROPERTIES
   public List<EntityReceivers> EReceivers {get;set;}  //REGISTER RECEIVERS
   
   //FUNDS
