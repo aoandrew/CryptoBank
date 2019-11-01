@@ -69,4 +69,4 @@ Common sense Multi-sig schemes or Threshhold signature schemes make sense for se
 
 This allows for governments / regulators / management of the bank to make changes to the bank, approve transactions if necessary, or reverse transactions if necessary.
 
-The governance structure will need to mirror the rights of current legal structures (in contrast to fully "trustless" systems.)
+The governance structure will mirror the rights of current legal structures (in contrast to fully "trustless" systems.)
