@@ -64,6 +64,59 @@ var reviewEscrow = ShowAllRecords(RiverEscrow, Format.FormattedView); //Format.T
 
 ```
 
+Accounts should have a Checking and Savings account to mirror current banking situaitons.
+
+Additionally each account type should have an unlimited number of Wallets each with it's own permissions.
+
+```
+
+enum AccountType
+{
+    Checking,
+    Savings
+}
+
+public class Account : IPayable
+{
+  public AccountType AccountType {get;set;}
+  public int Amount {set;set;}
+  
+  //Return amount in account including all wallets
+  public int SumIncludingAllWallets(Guid id)
+  {
+    ...
+    return amount;
+  }
+
+  //Return amount in account including all wallets
+  public int SumExcludingAllWallets(Guid id)
+  {
+    ...
+    return amount;
+  }
+
+
+}
+
+public class Wallet : IPayable
+{
+  public Guid Id {get;set;}
+  
+  public bool IsReceivingOnly {get;set;}
+  
+  public bool SendFromWalletToWallet(Guid idToSendFrom, Guid idToSendTo)
+  {
+  
+    return success;
+  }
+}
+```
+Accounts would have a more restricted permission set.
+
+Wallets id numbers could be shared -- so a vendor could pay to or be paid from a specific wallet only.  Permissions and the amount that is allowed to flow through could be more clearly set on the wallet level to prevent fraud.  Wallets could be emptied into the account on a specified schedule (time or amount).
+
+Also wallets can easily be created or destroyed for increased privacy.
+
 Governance:
 Common sense Multi-sig schemes or Threshhold signature schemes make sense for security but also for the transition banking organizations to blockchain mediated ones.
 
